@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nada Ali Abdel Nabi | Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --text-light: #94a3b8;
+      --primary: #06b6d4;
+      --primary-dark: #0891b2;
+      --accent: #67e8f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    #about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .profile-container {
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 6px solid rgba(6, 182, 212, 0.3);
+      box-shadow: 0 10px 40px rgba(6, 182, 212, 0.25);
+      background: #1e293b;
+      transition: all 0.5s ease;
+      animation: fadeInUp 1.4s ease-out forwards;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+      transition: all 0.6s ease;
+    }
+
+    .profile-container:hover {
+      transform: scale(1.08) rotate(3deg);
+      border-color: var(--accent);
+      box-shadow: 0 20px 60px rgba(103, 232, 249, 0.4);
+    }
+
+    .profile-container:hover .profile-img {
+      transform: scale(1.12);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .about-text strong {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 120px 0;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
+
+    h3::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(6, 182, 212, 0.15);
+      transition: all 0.4s ease;
+      margin-bottom: 2rem;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(6, 182, 212, 0.15);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px rgba(6, 182, 212, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      color: var(--primary);
+    }
+
+    footer {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 3rem 0 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(6, 182, 212, 0.2);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .social-links a {
+      color: var(--text-light);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 1.6rem; }
+      .nav-links { display: none; }
+      .profile-container {
+        width: 220px;
+        height: 220px;
+        border-width: 5px;
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.8rem;
+    }
+
+    ul li::before {
+      content: "\f058";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="container nav-container">
+      <div class="logo">Nada Ali</div>
+      <div class="nav-links">
+        <a href="#about" class="active">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="about">
+    <div class="container">
+      <div class="hero-content">
+        <div class="profile-container">
+          <img
+            src="https://i.ibb.co/wNWjXKww/Whats-App-Image-2026-01-19-at-1-04-36-AM.jpg"
+            alt="Nada Ali Abdel Nabi"
+            class="profile-img"
+          >
+        </div>
+        <h1>Nada Ali Abdel Nabi</h1>
+        <h2>Data Analyst</h2>
+        <p class="about-text">
+          Motivated and detail-oriented <strong>Data Analysis trainee</strong> with strong experience in operations, auditing, and logistics.
+        </p>
+        <p class="about-text">
+          <strong>Think of a scenario where all your business data is in Excel files or across three different systems, and you do not have any single view, cockpit to track performance. Better still, decisions are made by simply following gut feel. This may result in lost revenue and hours spent creating ad-hoc reports.</strong>
+        </p>
+        <p class="about-text">
+          <strong>That is where I step in as a Data Analyst.</strong> I visualize raw and unstructured data to a clear interactive dashboard in Excel, Power BI. These solutions offer actionable advice that guides business owners and teams to take decisions based on data.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h3>Work Experience</h3>
+      <div class="card">
+        <h4>WAVZ – Operations Team Leader <span style="color: #10b981; font-size: 0.9rem; padding: 0.2rem 0.5rem; border-radius: 12px; background: rgba(16,185,129,0.2);">Current</span></h4>
+        <p style="color: var(--primary);">Dec 2024 – Present</p>
+        <ul>
+          <li>Monitored and updated lecture schedules, instructors, and training center data for the Digital Egypt Pioneers initiative.</li>
+          <li>Maintained and updated a centralized database to reflect real-time operational changes.</li>
+          <li>Led a team of auditors responsible for verifying data accuracy, branding compliance, and content quality of recorded lectures.</li>
+          <li>Conducted end-of-month data validation for student attendance and performance across multiple batches.</li>
+          <li>Prepared and submitted detailed Excel reports to the Ministry of Communications, including student data, group codes, and attendance percentages.</li>
+          <li>Improved data accuracy and operational efficiency through structured reporting, collaboration, and quality assurance processes.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>WAVZ – Digital Egypt Pioneers Initiative Auditor</h4>
+        <p style="color: var(--primary);">Jan 2024 – Dec 2024</p>
+        <ul>
+          <li>Verified educational data, ensuring accuracy and completeness.</li>
+          <li>Confirmed the presence of initiative logos on all educational materials.</li>
+          <li>Supported quality assurance in all materials to meet set standards.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Shagardi KSA – Logistic Coordinator</h4>
+        <p style="color: var(--primary);">Jan 2024 – Sep 2024</p>
+        <ul>
+          <li>Coordinated and monitored supply processes.</li>
+          <li>Supervised logistics staff assignments and asset usage.</li>
+          <li>Planned and tracked shipments to ensure customer satisfaction.</li>
+          <li>Resolved order and courier-related issues.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Orange EG – Customer Service Representative (Part-Time)</h4>
+        <p style="color: var(--primary);">Nov 2019 – Dec 2020</p>
+        <ul>
+          <li>Handled customer inquiries and complaints, offering efficient solutions.</li>
+          <li>Coordinated with other departments to ensure prompt issue resolution.</li>
+          <li>Managed customer requests, stock, and performed administrative tasks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h3>Skills</h3>
+      <div class="grid">
+        <div class="card">
+          <h4 style="color: var(--primary);">Technical Skills</h4>
+          <ul>
+            <li><i class="fas fa-file-excel" style="color: var(--primary); margin-right: 0.5rem;"></i>Excel (PivotTables, VLOOKUP, Charts)</li>
+            <li><i class="fas fa-chart-bar" style="color: var(--primary); margin-right: 0.5rem;"></i>Power BI</li>
+            <li><i class="fas fa-database" style="color: var(--primary); margin-right: 0.5rem;"></i>SQL (basic)</li>
+            <li><i class="fab fa-python" style="color: var(--primary); margin-right: 0.5rem;"></i>Python (basic)</li>
+            <li><i class="fas fa-chart-line" style="color: var(--primary); margin-right: 0.5rem;"></i>Data Visualization & Dashboarding</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--primary);">Soft Skills & Operations</h4>
+          <ul>
+            <li><i class="fas fa-users" style="color: var(--primary); margin-right: 0.5rem;"></i>Team Leadership</li>
+            <li><i class="fas fa-lightbulb" style="color: var(--primary); margin-right: 0.5rem;"></i>Problem-Solving</li>
+            <li><i class="fas fa-eye" style="color: var(--primary); margin-right: 0.5rem;"></i>Attention to Detail</li>
+            <li><i class="fas fa-comments" style="color: var(--primary); margin-right: 0.5rem;"></i>Communication</li>
+            <li><i class="fas fa-cogs" style="color: var(--primary); margin-right: 0.5rem;"></i>Process Optimization & Auditing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <h3>Education & Training</h3>
+      <div class="card">
+        <h4>Bachelor's Degree</h4>
+        <p style="color: var(--primary);">Al-Azhar University | 2019–2023</p>
+        <p style="color: var(--accent); font-weight: 600;">Grade: Good</p>
+      </div>
+      <div class="card">
+        <h4>Data Analysis Trainee</h4>
+        <p style="color: var(--primary);">Digital Egypt Pioneers Initiative (DEPI) | Nov 2025 – Present</p>
+        <p>Hands-on experience in data collection, cleaning, visualization, and dashboard development using Excel & Power BI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h3>Projects</h3>
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h4 style="color: var(--accent);">Power BI Sales Dashboard</h4>
+        <p style="margin-bottom: 1rem;">Interactive sales performance dashboard created during Power BI training. Features comprehensive performance analysis, actionable insights, sales trends, product performance, and regional KPIs. Tools: Excel, Power BI.</p>
+        <a href="https://www.linkedin.com/posts/nada-ali-data_powerbi-dataanalysis-trainee-activity-7412979090879778817-8kLw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETfOdUBgfLuo0I9e3k6B8iL3MxXQ3x7fgI" target="_blank" class="project-link">
+          <i class="fab fa-linkedin" style="margin-right: 0.5rem;"></i>View Project on LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h3>Services I Offer</h3>
+      <div class="grid">
+        <div class="card">
+          <h4><i class="fas fa-chart-bar" style="color: var(--primary); margin-right: 0.5rem;"></i>Data Analysis & Visualization</h4>
+          <p>Create interactive dashboards and reports using Power BI and Excel to transform raw data into actionable insights.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-database" style="color: var(--primary); margin-right: 0.5rem;"></i>Data Cleaning & Management</h4>
+          <p>Collect, organize, validate data for accurate reporting and database management.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-cogs" style="color: var(--primary); margin-right: 0.5rem;"></i>Operational Support & Reporting</h4>
+          <p>Monitor processes, prepare stakeholder reports, ensure data accuracy and efficiency.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-clipboard-check" style="color: var(--primary); margin-right: 0.5rem;"></i>Auditing & Quality Assurance</h4>
+          <p>Verify data integrity, branding compliance, maintain high-quality standards.</p>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-handshake" style="color: var(--primary); margin-right: 0.5rem;"></i>Consulting for Small Projects</h4>
+          <p>Process optimization, data tracking, analytical tools implementation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h3>Get In Touch</h3>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <i class="fab fa-whatsapp contact-icon"></i>
+          <h4>WhatsApp / Phone</h4>
+          <a href="https://wa.me/201144166546" target="_blank">+20 114 416 6546</a>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-envelope contact-icon"></i>
+          <h4>Email</h4>
+          <a href="mailto:nadaali200136@gmail.com">nadaali200136@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <i class="fab fa-linkedin contact-icon"></i>
+          <h4>LinkedIn</h4>
+          <a href="https://www.linkedin.com/in/nada-ali-data/" target="_blank">linkedin.com/in/nada-ali-data</a>
+        </div>
+        <div class="contact-card">
+          <i class="fab fa-github contact-icon"></i>
+          <h4>GitHub</h4>
+          <a href="https://github.com/nadaali200136-sys" target="_blank">github.com/nadaali200136-sys</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 1rem;">© 2026 Nada Ali Abdel Nabi. All rights reserved. | Hadayek Helwan, Cairo, Egypt</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/nada-ali-data/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/nadaali200136-sys" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:nadaali200136@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/201144166546" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
